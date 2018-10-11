@@ -25,14 +25,14 @@ class Alerts extends Component {
           <Col xs="12" md="12">
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i><strong>About Us</strong>
+                <i className="fa fa-align-justify"></i><strong>SUPPORT</strong>
               
               </CardHeader>
               <CardBody>
 
                 
                   <h4 className="alert-heading">Title</h4>
-                    <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="About us" />
+                    <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="SUPPORT" />
 
                        
                    <h4 className="alert-heading">Descripation</h4>
@@ -42,7 +42,7 @@ class Alerts extends Component {
                  
                  
                 
-                   <h4 className="alert-heading">Status</h4>
+            
                 <Select defaultValue= "Active"  required className="dropdown-width"  
                   name="form-field-name"
                   value={{value: this.state.employeetype, 

@@ -15,6 +15,7 @@ import {
   Switches,
   Tables,
   Tabs,
+
   Tooltips,
 } from './Base';
 
@@ -65,5 +66,6 @@ export {
   Cards,
   Breadcrumbs,
   Paginations,
+  Charts,
 };
 

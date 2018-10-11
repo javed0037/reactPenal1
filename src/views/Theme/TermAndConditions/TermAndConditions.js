@@ -32,7 +32,7 @@ class Alerts extends Component {
 
                 
                   <h4 className="alert-heading">Title</h4>
-                    <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="About us" />
+                    <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="TERMS & CONDITION" />
 
                        
                    <h4 className="alert-heading">Descripation</h4>
@@ -42,7 +42,7 @@ class Alerts extends Component {
                  
                  
                 
-                   <h4 className="alert-heading">Status</h4>
+            
                 <Select defaultValue= "Active"  required className="dropdown-width"  
                   name="form-field-name"
                   value={{value: this.state.employeetype, 

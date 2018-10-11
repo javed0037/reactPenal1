@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch,Redirect } from 'react-router-dom';
-
 import './App.scss';
 import { Login, Page404, Page500, Register } from './views/Pages';
 

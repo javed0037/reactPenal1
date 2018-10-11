@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Badge, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem, NavLink } from 'reactstrap';
 import PropTypes from 'prop-types';
-
 import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logo.svg'
 import sygnet from '../../assets/img/brand/sygnet.svg'
@@ -37,14 +36,11 @@ class DefaultHeader extends Component {
 
         <Nav className="d-md-down-none" navbar>
           <NavItem className="px-3">
-            <NavLink href="/">Dashboard</NavLink>
+            <NavLink href="/charts">Dashboard</NavLink>
           </NavItem>
               
         </Nav>
         <Nav className="ml-auto" navbar>
-         
-         
-          
           <AppHeaderDropdown direction="down">
             <DropdownToggle nav>
               <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
@@ -52,7 +48,7 @@ class DefaultHeader extends Component {
             <DropdownMenu right style={{ right: 'auto' }}>
             <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
             <DropdownItem>Login : {sessionStorage.getItem('username')}</DropdownItem> 
-              <DropdownItem onClick={this.logout}><i className="fa fa-lock"></i>Logout</DropdownItem>
+            <DropdownItem onClick={this.logout}><i className="fa fa-lock"></i>Logout</DropdownItem>
         
             </DropdownMenu>
           </AppHeaderDropdown>

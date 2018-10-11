@@ -57,6 +57,7 @@ class VendorList extends Component {
       }
     }
     var parameter = this.props.match.params.ids;
+    
     var user_ids = (parameter) ? parameter : 0;
     var pageno = this.state.pageno;
     var api_url = `${config.API_URL}`;
@@ -131,7 +132,6 @@ class VendorList extends Component {
             },
             body: JSON.stringify(p)
           }
-
           var api_url = `${config.API_URL}`;
           fetch(api_url + '/superadmin/updateVendor', object)
             .then(res => res.json())
@@ -160,45 +160,19 @@ class VendorList extends Component {
     const formthis = this;
     return (
       <div className="animated fadeIn">
+      <h4>CHAT WALLPAPER LIST</h4>
         <Row>
           <Col xs="12" lg="12">
             <Card>
-              <CardHeader>
-                <Row>
-                  <Col xs="6" lg="6">
-                    <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="Enter Name" />
-                  </Col>
-                  <Col xs="6" lg="6">
-                    <Input type="email" id="email" name="email" value={this.state.susername} onChange={this.onSearch} placeholder="Enter email" />
-                  </Col>
-                  </Row>
-                  <Row>
-                  <Col xs="6" lg="6">
-                    <Input type="number" min="0" id="smobileno" name="smobileno" value={this.state.smobileno} onChange={this.onSearch} placeholder="Mobile No." />
-                  </Col>
-                  <Col xs="6" lg="6">
-                
-            
-                        <Select required className="dropdown-width"  
-                          name="form-field-name"
-                          value={{value: this.state.employeetype, 
-                          label: this.state.employeetype}}
-                          onChange={this.handleChange}
-                          options={this.state.EmployeeList}
-                        />
-                      
-                  </Col>
-                </Row>
-              </CardHeader>
+              
               <CardBody>
+                
                 <Table responsive striped>
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>User Id</th>  
-                      <th>Status</th>
-                      <th>Status</th>
-                      <th>View</th>
+                      <th>S.No</th>
+                      <th>Color Code</th>
+                      <th>Color Box</th>
                       <th>Edit</th>
                       <th>Delete</th>
 
@@ -210,12 +184,8 @@ class VendorList extends Component {
                         return (
                           <tr>
                             <td>{p.id}</td>
-                            <td>{p.userId}</td>
-                            <td>
-                             
-                              <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
-
-                            </td>
+                            
+                          
                             <td>
                              
                              <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
@@ -277,8 +247,6 @@ class VendorList extends Component {
             </Card>
           </Col>
         </Row>
-
-
       </div>
 
     );

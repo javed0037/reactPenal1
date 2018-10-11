@@ -25,7 +25,7 @@ class Alerts extends Component {
           <Col xs="12" md="12">
             <Card>
               <CardHeader>
-                <i className="fa fa-align-justify"></i><strong>About Us</strong>
+                <i className="fa fa-align-justify"></i><strong>PRIVACY POLICY</strong>
               
               </CardHeader>
               <CardBody>
@@ -42,7 +42,7 @@ class Alerts extends Component {
                  
                  
                 
-                   <h4 className="alert-heading">Status</h4>
+            
                 <Select defaultValue= "Active"  required className="dropdown-width"  
                   name="form-field-name"
                   value={{value: this.state.employeetype, 

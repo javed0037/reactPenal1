@@ -166,6 +166,25 @@ const Typography = Loadable({
   loader: () => import('./views/Theme/Typography'),
   loading: Loading,
 });
+const Privacypolicy = Loadable({
+  loader: () => import('./views/Theme/Privacypolicy'),  
+  loading: Loading,
+});
+
+const Support = Loadable({
+  loader: () => import('./views/Theme/Support/Support'),
+  loading: Loading,
+});
+
+//const TermAndConditions = Loadable({
+const TermAndConditions = Loadable({
+  loader: () => import('./views/Theme/TermAndConditions/TermAndConditions'),
+  loading: Loading,
+});
+const Chatwalpaper = Loadable({
+  loader: () => import('./views/Theme/Chatwalpaper'), 
+  loading: Loading,
+});
 
 const Widgets = Loadable({
   loader: () => import('./views/Widgets/Widgets'),
@@ -191,6 +210,10 @@ const routes = [
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
+  { path: '/theme/Privacypolicy', name: 'Privacypolicy', component: Privacypolicy },
+  { path: '/theme/Support', name: 'Support', component: Support },
+  { path: '/theme/TermAndConditions', name: 'TermAndConditions', component: TermAndConditions },
+  { path: '/theme/Chatwalpaper', name: 'Chatwalpaper', component: Chatwalpaper },
   { path: '/base', exact: true, name: 'Base', component: Cards },
   { path: '/base/cards', name: 'Cards', component: Cards },
   { path: '/base/forms', name: 'Forms', component: Forms },
