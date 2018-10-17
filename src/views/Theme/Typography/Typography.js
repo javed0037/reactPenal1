@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Badge, Card, CardBody, CardHeader, Col, Row, Table,  FormGroup,
-Label } from 'reactstrap';
+        Label } from 'reactstrap';
 import config from '../../../config';
 import dateFormat from 'dateformat';
 import { NavLink } from 'react-router-dom';
@@ -53,24 +53,31 @@ class VendorList extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+       // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
-    var parameter = this.props.match.params.ids;
-    var user_ids = (parameter) ? parameter : 0;
+    //var parameter = this.props.match.params.ids;
+    //var user_ids = (parameter) ? parameter : 0;
     var pageno = this.state.pageno;
-    var api_url = `${config.API_URL}`;
+   // var api_url = `${config.API_URL}`;
 
     var apiUrl = "";
-    apiUrl = api_url + "/superadmin/getAllVendors?page=" + pageno + "&limit=" + PAGELIMIT + "&name=" + susername + "&mobileno=" + smobileno + "&address=" + saddress + "";
-
+    apiUrl   =  'http://localhost:5000/getUserWithPagination?npp='+PAGELIMIT+'&page='+pageno
+    //apiUrl = api_url + "/superadmin/getAllVendors?page=" + pageno + "&limit=" + PAGELIMIT + "&name=" + susername + "&mobileno=" + smobileno + "&address=" + saddress + "";
+    console.log(PAGELIMIT,'PAGELIMIT');
+    
     fetch(apiUrl, object)
       .then(res => res.json())
       .then(json => {
-        if (json["data"].length > 0) {
-          var total_count = json["totalElements"];
+
+        console.log("jsonjsonjson",json)
+         console.log('data',json.results)
+        if (json.results.length > 0) {
+          var total_count = json["totalpages"];
+          console.log("total_counttotal_count---------------",total_count);
+          
           this.setState({
-            products: json["data"],
+            products: json.results,
             pageCount: Math.ceil(total_count / PAGELIMIT)
           });
         }
@@ -210,7 +217,7 @@ class VendorList extends Component {
                         return (
                           <tr>
                             <td>{p.id}</td>
-                            <td>{p.userId}</td>
+                            <td>{p.userid}</td>
                             <td>
                              
                               <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>

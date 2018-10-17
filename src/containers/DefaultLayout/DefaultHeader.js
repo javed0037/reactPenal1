@@ -17,6 +17,10 @@ class DefaultHeader extends Component {
     var host_url=`${config.HOST_URL}`;
     window.location.href = host_url+'/#/login';
   }
+  editProfile =()=>{
+    var host_url=`${config.HOST_URL}`;
+    window.location.href  = host_url+'/#/base/forms';
+  }
   render() {
 
     // eslint-disable-next-line
@@ -46,9 +50,9 @@ class DefaultHeader extends Component {
               <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
             </DropdownToggle>
             <DropdownMenu right style={{ right: 'auto' }}>
-            <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
-            <DropdownItem>Login : {sessionStorage.getItem('username')}</DropdownItem> 
-            <DropdownItem onClick={this.logout}><i className="fa fa-lock"></i>Logout</DropdownItem>
+            < DropdownItem onClick={this.editProfile}><i className="fa fa-lock"></i>profile</DropdownItem>
+
+            <DropdownItem>Login : {sessionStorage.getItem('username')}</DropdownItem>             <DropdownItem onClick={this.logout}><i className="fa fa-lock"></i>Logout</DropdownItem>
         
             </DropdownMenu>
           </AppHeaderDropdown>
@@ -59,6 +63,28 @@ class DefaultHeader extends Component {
     );
   }
 }
+{/* <form method="post" accept-charset="utf-8" id="profileForm" action="/users/profile" novalidate="novalidate"><div style="display:none;"><input type="hidden" name="_method" value="PUT"><input type="hidden" name="_csrfToken" value="990ab5fac90e03c108109766ecb31d16545660f5e476c033c4a287dd9b8c75e095700806c7e722d1ddd6a25c0c6e7b3bfc968ef88ae374c0b22c2fecb4a36479"></div>              <div class="form-group">
+				        <div class="input text"><label for="username">Username</label><input type="text" name="username" placeholder="Enter Username" class="form-control valid" maxlength="200" id="username" value="admin" aria-required="true" aria-invalid="false"></div>	
+              </div>
+              <div class="form-group">
+        			 <div class="input textarea"><label for="name">Name</label><textarea name="name" placeholder="Enter Name" class="form-control valid" id="name" rows="5" aria-required="true" aria-invalid="false">Admin</textarea></div>	
+              </div>
+              <div class="form-group">
+				       <div class="input email"><label for="email">Email</label><input type="email" name="email" placeholder="Enter Email" class="form-control valid" maxlength="200" id="email" value="admin@admin.com" aria-required="true" aria-invalid="false"></div>	
+              </div>
+              <div class="form-group">
+				        <div class="input tel"><label for="phone">Phone</label><input type="tel" name="phone" placeholder="Enter Phone Number" class="form-control valid" maxlength="20" id="phone" value="8233402576" aria-invalid="false"></div>	
+              </div>
+              <div class="form-group">
+                <div class="input password"><label for="oldpassword">Old Password</label><input type="password" name="oldpassword" class="form-control" id="oldpassword" value=""></div>              </div>
+              <div class="form-group">
+                <div class="input password"><label for="password">Password</label><input type="password" name="password" class="form-control" id="password" value=""></div>              </div>
+              <div class="form-group">
+                <div class="input password"><label for="confirm-password">Confirm Password</label><input type="password" name="confirm_password" class="form-control" id="confirm-password" value=""></div>              </div>
+              <div class="box-footer">
+                <button class="btn btn-primary waves-effect" type="submit">Submit</button>  
+              </div>
+              </form> */}
 
 DefaultHeader.propTypes = propTypes;
 DefaultHeader.defaultProps = defaultProps;
