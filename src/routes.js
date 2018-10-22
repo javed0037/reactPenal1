@@ -166,8 +166,16 @@ const Typography = Loadable({
   loader: () => import('./views/Theme/Typography'),
   loading: Loading,
 });
+const Details = Loadable({
+  loader: () => import('./views/Theme/Typography/Details'),
+  loading: Loading,
+});
+const EditProfile = Loadable({
+  loader: () => import('./views/Theme/Typography/EditProfile'),
+  loading: Loading,
+});
 const Privacypolicy = Loadable({
-  loader: () => import('./views/Theme/Privacypolicy'),  
+  loader: () => import('./views/Theme/Privacypolicy'),
   loading: Loading,
 });
 
@@ -182,7 +190,7 @@ const TermAndConditions = Loadable({
   loading: Loading,
 });
 const Chatwalpaper = Loadable({
-  loader: () => import('./views/Theme/Chatwalpaper'), 
+  loader: () => import('./views/Theme/Chatwalpaper'),
   loading: Loading,
 });
 
@@ -210,6 +218,8 @@ const routes = [
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
+  { path: '/Details/:ids', name: 'Details', component: Details },
+  { path: '/EditProfile/:ids', name: 'EditProfile', component: EditProfile },
   { path: '/theme/Privacypolicy', name: 'Privacypolicy', component: Privacypolicy },
   { path: '/theme/Support', name: 'Support', component: Support },
   { path: '/theme/TermAndConditions', name: 'TermAndConditions', component: TermAndConditions },

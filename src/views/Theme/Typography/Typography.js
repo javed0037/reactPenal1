@@ -15,34 +15,32 @@ import swal from 'sweetalert';
 
 import ReactPaginate from 'react-paginate';
 import { PAGELIMIT } from '../../../Controllers/Comman';
-
+var size;
 class VendorList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      size: '',
       products: [],
       offset: 0,
       pageno: 1,
       pageCount: 0
     };
-
   }
-
   componentDidMount() {
     this.listVendor();
-
   }
 
-  handlePageClick = (data) => {
-    let selected = data.selected;
-    let pno = selected + 1;
-    this.setState(
-      { pageno: pno },
-      () => {
-        this.listVendor();
-      }
-    );
-  };
+  // handlePageClick = (data) => {
+  //   let selected = data.selected;
+  //   let pno = selected + 1;
+  //   this.setState(
+  //     { pageno: pno },
+  //     () => {
+  //       this.listVendor();
+  //     }
+  //   );
+  // };
 
 
   listVendor = () => {
@@ -69,9 +67,6 @@ class VendorList extends Component {
     fetch(apiUrl, object)
       .then(res => res.json())
       .then(json => {
-
-        console.log("jsonjsonjson",json)
-         console.log('data',json.results)
         if (json.results.length > 0) {
           var total_count = json["totalpages"];
           console.log("total_counttotal_count---------------",total_count);
@@ -220,19 +215,23 @@ class VendorList extends Component {
                             <td>{p.userid}</td>
                             <td>
                              
-                              <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
+                            <input
+                                  type="radio"
+                                  value="medium"
+                                 checked={p.status == 1}    
+                                 
+                                  />
 
                             </td>
                             <td>
                              
-                             <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
-
+                             <Badge className="pointer" color={(p.status == 1) ? "success" :"danger"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
                            </td>
                             <td>
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/vendor/VendorEmployeeList/' + p.userid}
+                                to={'/Details/' +p.userid}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="icon-eye icons font-1xl d-block mt-0"></i>
@@ -242,7 +241,7 @@ class VendorList extends Component {
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/vendor/updatevendor/' + p.userid}
+                                to={'/EditProfile/' + p.userid}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="cui-note icons font-1xl d-block mt-0"></i>
