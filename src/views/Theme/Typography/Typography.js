@@ -31,16 +31,16 @@ class VendorList extends Component {
     this.listVendor();
   }
 
-  // handlePageClick = (data) => {
-  //   let selected = data.selected;
-  //   let pno = selected + 1;
-  //   this.setState(
-  //     { pageno: pno },
-  //     () => {
-  //       this.listVendor();
-  //     }
-  //   );
-  // };
+  handlePageClick = (data) => {
+    let selected = data.selected;
+    let pno = selected + 1;
+    this.setState(
+      { pageno: pno },
+      () => {
+        this.listVendor();
+      }
+    );
+  };
 
 
   listVendor = () => {
@@ -69,12 +69,13 @@ class VendorList extends Component {
       .then(json => {
         if (json.results.length > 0) {
           var total_count = json["totalpages"];
-          console.log("total_counttotal_count---------------",total_count);
+          console.log("total_counttotal_count---------------", Math.ceil(total_count / PAGELIMIT));
           
           this.setState({
             products: json.results,
             pageCount: Math.ceil(total_count / PAGELIMIT)
           });
+
         }
         else {
           this.setState({
@@ -265,11 +266,11 @@ class VendorList extends Component {
                 </Table>
                 <ReactPaginate previousLabel={"previous"}
                   nextLabel={"next"}
-                  breakLabel={<a href="">...</a>}
+                  breakLabel={<a href=""></a>}
                   breakClassName={"break-me"}
                   pageCount={this.state.pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
+                  marginPagesDisplayed={0}
+                  pageRangeDisplayed={10}
                   onPageChange={this.handlePageClick}
                   containerClassName={"pagination"}
                   subContainerClassName={"pages page-item"}
