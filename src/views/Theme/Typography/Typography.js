@@ -28,7 +28,7 @@ class VendorList extends Component {
     };
   }
   componentDidMount() {
-    this.listVendor();
+    this.userlist();
   }
 
   handlePageClick = (data) => {
@@ -37,13 +37,13 @@ class VendorList extends Component {
     this.setState(
       { pageno: pno },
       () => {
-        this.listVendor();
+        this.userlist();
       }
     );
   };
 
 
-  listVendor = () => {
+  userlist = () => {
     var susername = (this.state.susername) ? this.state.susername : "";
     var smobileno = (this.state.smobileno) ? this.state.smobileno : "";
     var saddress = (this.state.saddress) ? this.state.saddress : "";
@@ -110,19 +110,9 @@ class VendorList extends Component {
       if (isConfirm) {
         swal({
           title: currentStatusTitle + "!",
-          text: 'Vendor ' + p.email + ' is successfully ' + currentstatusname + '!',
+          text: 'user ' + p.email + ' is successfully ' + currentstatusname + '!',
           icon: 'success'
         }).then(function () {
-          p.superadminid = sessionStorage.getItem('user_id');
-          p.companyname = p.companyName;
-          p.status = currentstatus;
-          p.vendorid = p.userid;
-          p.rolesentity = [
-            {
-              "name": "ROLE_VENDOR"
-
-            }
-          ];
           console.log(p, "there are the req param")
 
           ///////////////////////////
@@ -130,16 +120,17 @@ class VendorList extends Component {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+              //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
             },
-            body: JSON.stringify(p)
           }
 
-          var api_url = `${config.API_URL}`;
-          fetch(api_url + '/superadmin/updateVendor', object)
+          var api_url = 'http://localhost:5000/user/deleteUser?userid='+p.userid;
+
+          fetch(api_url, object)
             .then(res => res.json())
+
             .then(json => {
-              currentform.listVendor();
+              currentform.userlist();
             }).catch(error => {
 
             });
@@ -154,7 +145,7 @@ class VendorList extends Component {
     this.setState(
       { [e.target.name]: e.target.value },
       () => {
-        this.listVendor();
+        this.userlist();
       }
     );
   }

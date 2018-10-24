@@ -88,11 +88,11 @@ class EditProfile extends Component {
     console.log('there are the state 444444444=>', this.state)
     var parameter = this.props.match.params.ids;
     var user_ids = (parameter) ? parameter : 0;
-
+    
     var email = (this.state.email) ? this.state.email.toString() : "";
     var name = (this.state.name) ? this.state.name.toString() :    "";
     var phone = (this.state.phone) ? this.state.phone.toString() : "";
-    var Status1 = (this.state.Status2 == 'Active')?1 : 0; 
+    var Status1 = (this.state.Status2);
    
     var args1 = {
       "email": email,
