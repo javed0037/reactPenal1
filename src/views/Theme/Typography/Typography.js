@@ -184,7 +184,17 @@ class VendorList extends Component {
                   </Col>
                 </Row>
               </CardHeader>
+              <br/>
+              <br/>
               <CardBody>
+              <Row>
+                  <Col xs="11" lg="11">
+                <p><strong>User</strong></p>
+                </Col>
+                <Col xs="1" lg="1">
+                <h4><a href= "/#/AddUser"> <Button type="submit" size="sm" color="primary"><i className="fa fa-plus"></i> Add User</Button></a></h4>
+                </Col>
+                </Row>
                 <Table responsive striped>
                   <thead>
                     <tr>

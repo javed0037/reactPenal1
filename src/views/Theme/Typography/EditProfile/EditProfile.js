@@ -120,21 +120,25 @@ class EditProfile extends Component {
         console.log('there are the response',response);
         
         response.json().then(json => {
-          console.log('there are the json---------', json)
-          if (json.Status1) {
+          console.log('there are the json---------', json.status,"jsonnnnn",json)
+          if (json.status){
             swal({
               title: swaltitle,
               text:  swaltext,
               icon:  "success",
             });
-            window.location.href = '/#';
+            //console.log("there are the typography",window.location.href)
+            window.location.href = '/#/theme/typography';
+            console.log("there are the typography88888888888888888888",window.location.href)
           }
           else {
+            console.log("this is going on the way")
             swal({
               title: "Warning",
               text: json.message,
               icon: "warning",
             });
+             window.location.href = '/#/theme/typography';
           }
         })
 
