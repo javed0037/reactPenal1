@@ -3,32 +3,7 @@ import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
 import { Card, CardBody, CardColumns, CardHeader } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
-const line = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-  ],
-};
+
 
 const bar = {
   labels: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12','13','14','15','16','17','18','19','20','20','21','22','23','24','25','26','27','28','29','30'],
@@ -101,10 +76,10 @@ const pie = {
   ],
   datasets: [
     {
-      data: [300, 50, 100],
+      data: [1000, 5, 1],
       backgroundColor: [
         '#FF6384',
-        '#36A2EB',
+        '#33cc33',
         '#FFCE56',
       ],
       hoverBackgroundColor: [
@@ -152,32 +127,82 @@ const options = {
 }
 
 class Charts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allUser : ''
+    };
+  }
+  componentDidMount() {
+    this.userlist();
+  }
+  userlist = () => {
+    var object = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+       // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+      }
+    }
+    
+    var apiUrl = "";
+    apiUrl   =  'http://localhost:5000/user/getUser'  
+    fetch(apiUrl, object)
+      .then(res => res.json())
+      .then(json => {
+        console.log("there are the json ",json)
+        if (json.data.length > 0) {
+          var total_count = json.data.length;
+            console.log("total_count---------------",total_count);
+            this.setState({allUser: total_count});
+            
+          
+
+        }
+        else {
+          this.setState({
+            allUser: 0
+          })
+        }
+      }).catch(error => {
+        console.log("error-->>", error)
+      });
+  }
+
   render() {
     return (
       <div className="animated fadeIn">
+
         <CardColumns className="cols-2">
           <Card>
+
             <CardHeader>
               All User
               <div className="card-header-actions">
-                <a href="http://www.chartjs.org" className="card-header-action">
-                  <small className="text-muted">docs</small>
-                </a>
+                
               </div>
             </CardHeader>
             <CardBody>
               <div className="chart-wrapper">
-                <Line data={line} options={options} />
+              <h4 color = 'red'><strong>{this.state.allUser}</strong></h4>
+              <br/>
+              <h4><strong><a href =  '/#/theme/typography'> All users</a> </strong></h4>
               </div>
+             
             </CardBody>
+            <br/><br/><br/>
+            <CardHeader>
+              changes
+              
+            </CardHeader>
           </Card>         
           <Card>
             <CardHeader>
              User
               <div className="card-header-actions">
-                <a href="http://www.chartjs.org" className="card-header-action">
+                
                   <small className="text-muted">docs</small>
-                </a>
+               
               </div>
             </CardHeader>
             <CardBody>

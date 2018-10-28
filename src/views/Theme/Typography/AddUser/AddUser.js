@@ -16,6 +16,7 @@ class AddUser extends Component {
       phone : '',
       password : '',
       pinid : '',
+      random1 : '',
       Status1  : [{label : 'Select Status' , value : 'Select Statu'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
       visible: true
     };
@@ -26,10 +27,12 @@ class AddUser extends Component {
     this.setState({ visible: false });
   }
 
-  myFunction1(){
-   r = Math.random().toString(36).substring(7);
-   return r;
-   console.log('there are r-0---------',r);
+  myFunction1 = (e) =>{
+    e.preventDefault();
+  var  r = Math.random().toString(36).substring(7);
+   console.log('there are the random string',r)
+   this.setState({random1 : r});
+   console.log('there are r-0---------',this.state.random1);
    
   }
   onChange = (e) => {
@@ -151,9 +154,9 @@ class AddUser extends Component {
                     <FormGroup>  
                     <h4 className="alert-heading">Secure Pin id</h4>
                     
-                    <Input type="text" id= "pinid" name= "pinid" value={this.myFunction1()} onChange={this.getString} placeholder="Enter enter the pin Id" />
+                    <Input type="text" id= "pinid" name= "pinid" value={this.state.random1}  placeholder="Enter enter the pin Id" />
                      <br/>
-                     <button onclick="myFunction1()">Generate Key</button>
+                     <button onClick= {this.myFunction1}>Generate Key</button>
                     </FormGroup>   
                      
                     <FormGroup> 
