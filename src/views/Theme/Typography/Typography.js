@@ -162,14 +162,17 @@ class VendorList extends Component {
                   <Col xs="6" lg="6">
                     <Input type="text" id="susername" name="susername" value={this.state.susername} onChange={this.onSearch} placeholder="Enter Name" />
                   </Col>
+                  
                   <Col xs="6" lg="6">
                     <Input type="email" id="email" name="email" value={this.state.susername} onChange={this.onSearch} placeholder="Enter email" />
                   </Col>
+                  <br/>
                   </Row>
                   <Row>
                   <Col xs="6" lg="6">
                     <Input type="number" min="0" id="smobileno" name="smobileno" value={this.state.smobileno} onChange={this.onSearch} placeholder="Mobile No." />
                   </Col>
+                 
                   <Col xs="6" lg="6">
                 
             
@@ -183,15 +186,17 @@ class VendorList extends Component {
                       
                   </Col>
                 </Row>
+                <br/>
+                <Row><Col><Button type="submit" size="sm" color="primary">Seach</Button></Col></Row>
               </CardHeader>
               <br/>
               <br/>
               <CardBody>
               <Row>
-                  <Col xs="11" lg="11">
+                  <Col xs="10" lg="10">
                 <p><strong>User</strong></p>
                 </Col>
-                <Col xs="1" lg="1">
+                <Col xs="2" lg="2">
                 <h4><a href= "/#/AddUser"> <Button type="submit" size="sm" color="primary"><i className="fa fa-plus"></i> Add User</Button></a></h4>
                 </Col>
                 </Row>

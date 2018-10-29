@@ -16,6 +16,7 @@ class AddUser extends Component {
       phone : '',
       password : '',
       pinid : '',
+      random1 :'',
       Status1  : [{label : 'Select Status' , value : 'Select Statu'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
       visible: true
     };
@@ -26,9 +27,10 @@ class AddUser extends Component {
     this.setState({ visible: false });
   }
 
-  myFunction1(){
-   r = Math.random().toString(36).substring(7);
-   return r;
+  myFunction1=(e)=>{
+    e.preventDefault();
+   var r = Math.random().toString(36).substring(7);
+     this.setState({random1:r})
    console.log('there are r-0---------',r);
    
   }
@@ -38,6 +40,11 @@ class AddUser extends Component {
     this.setState({ [e.target.password]: e.target.value });
     this.setState({ [e.target.phone]: e.target.value });
     this.setState({ [e.target.pinid]: e.target.value });
+  }
+  handleChange = (e) => {
+    console.log("XXXXXXX--------@@@@@@@@@@@@@@@ ", e)
+    var val1=(e.value=="Active")?1:0;
+    this.setState({ Status2: val1 });
   }
   // getString = (e){
 
@@ -51,7 +58,7 @@ class AddUser extends Component {
     var password = (this.state.password) ? this.state.password.toString() : "";
     var name = (this.state.name) ? this.state.name.toString() :    "";
     var phone = (this.state.phone) ? this.state.phone.toString() : "";
-    var securePinid = (this.state.pinid) ? this.state.pinid.toString() : "";
+    var unique_key = (this.state.random1) ? this.state.random1.toString() : "";
     var Status1 = (this.state.Status2);
    
     var args1 = {
@@ -60,7 +67,7 @@ class AddUser extends Component {
       "phone" : phone,
       "password" : password,
       "status" : Status1,
-      "securePinid" :  securePinid
+      "unique_key" :  unique_key
     };
 
     var swaltitle = (user_ids == 0) ? "SAVE" : "UPDATE";
@@ -74,7 +81,7 @@ class AddUser extends Component {
       body: JSON.stringify(args1)
     }
     var api_url = '';
-    api_url = 'http://localhost:5000/admin/addNewuser';
+    api_url = 'http://localhost:5000/addNewuser';
    
     fetch(api_url, object1)
       .then(function (response) {
@@ -82,7 +89,7 @@ class AddUser extends Component {
         
         response.json().then(json => {
           console.log('there are the json---------', json.status,"jsonnnnn",json)
-          if (json.status){
+          if (json.status == '200'){
             swal({
               title: swaltitle,
               text:  json.message,
@@ -97,7 +104,6 @@ class AddUser extends Component {
               text: json.message,
               icon: "warning",
             });
-             window.location.href = '/#/theme/typography';
           }
         })
 
@@ -113,6 +119,10 @@ class AddUser extends Component {
   }
 
   render() {
+    const { selectedOption1 } = this.state;
+    // var test = { "label": this.state.Status1 };
+     var test1 = (this.state.Status2 === 1)?'Active' :'Inactive';
+       console.log('test1=',test1,"Status2=",this.state.Status2)
     return (
       <div className="animated fadeIn">
      <Form onSubmit={this.onSubmit}>
@@ -151,21 +161,19 @@ class AddUser extends Component {
                     <FormGroup>  
                     <h4 className="alert-heading">Secure Pin id</h4>
                     
-                    <Input type="text" id= "pinid" name= "pinid" value={this.myFunction1()} onChange={this.getString} placeholder="Enter enter the pin Id" />
+                    <Input type="text" id= "pinid" name= "pinid" value={this.state.random1} onChange={this.getString} placeholder="Enter enter the pin Id" />
                      <br/>
-                     <button onclick="myFunction1()">Generate Key</button>
+                     <button onClick={this.myFunction1}>Generate Key</button>
                     </FormGroup>   
                      
                     <FormGroup> 
-                   
-                <h4 className="alert-heading">Status</h4>
-                <Select defaultValue= "Active"  required className="dropdown-width"  
-                  name="form-field-name"
-                  value={{value: this.state.employeetype, 
-                  label: this.state.employeetype}}
-                  onChange={this.handleChange}
-                  options={this.state.EmployeeList}
-                />
+                <Label htmlFor="status">Status</Label> 
+                        <Select className="dropdown-width"
+                          name="form-field-name"
+                          value={{label : test1,value : test1}}
+                          onChange={this.handleChange}
+                          options={this.state.Status1}
+                        />
                   </FormGroup> 
               </CardBody>
             </Card>
