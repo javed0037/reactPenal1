@@ -180,19 +180,21 @@ class Charts extends Component {
               //formthis.getpai();
             });
 
-:            formthis.setState({ pieInAct = {
+            formthis.setState({ pieInAct : {
+              label : [
+                'active','inactive'
+
+              ],
               datasets: [
                 {
-                  data: [acti, inac],
+                  data: [total_count1, total_count2],
                   backgroundColor: [
                     '#FF6384',
-                    '#000099',
-                    '#FFCE56',
+                    '#000099'                    
                   ],
                   hoverBackgroundColor: [
                     '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
+                    '#000099'
                   ],
                 }],
             }});

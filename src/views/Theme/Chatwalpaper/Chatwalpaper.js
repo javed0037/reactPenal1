@@ -15,8 +15,18 @@ import swal from 'sweetalert';
 
 import ReactPaginate from 'react-paginate';
 import { PAGELIMIT } from '../../../Controllers/Comman';
+ 
+const divStyle = {
+  margin: '40px',
+  border: '5px solid pink'
+};
+const pStyle = {
+  fontSize: '15px',
+  textAlign: 'center'
+};
 
-class VendorList extends Component {
+
+class CharWalper extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,26 +63,26 @@ class VendorList extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
     var parameter = this.props.match.params.ids;
     
     var user_ids = (parameter) ? parameter : 0;
     var pageno = this.state.pageno;
-    var api_url = `${config.API_URL}`;
+   // var api_url = `${config.API_URL}`;
 
-    var apiUrl = "";
-    apiUrl = api_url + "/superadmin/getAllVendors?page=" + pageno + "&limit=" + PAGELIMIT + "&name=" + susername + "&mobileno=" + smobileno + "&address=" + saddress + "";
-
+    var apiUrl = 'http://localhost:5000/admin/colorCode';
     fetch(apiUrl, object)
       .then(res => res.json())
       .then(json => {
-        if (json["data"].length > 0) {
-          var total_count = json["totalElements"];
+
+        console.log("this is json ------------",json)
+        if (json["results"].length > 0) {
+          //var total_count = json["totalElements"];
           this.setState({
-            products: json["data"],
-            pageCount: Math.ceil(total_count / PAGELIMIT)
+            products: json["results"],
+           // pageCount: Math.ceil(total_count / PAGELIMIT)
           });
         }
         else {
@@ -188,24 +198,18 @@ class VendorList extends Component {
                           
                             <td>
                              
-                             <Badge className="pointer" onClick={() => formthis.statusupdate(p)} color={(p.status == 1) ? "success" : "secondary"}>{(p.status == 1) ? "Active" : "Inactive"}</Badge>
+                            {p.code}
 
                            </td>
                             <td>
-                              <BSNavLink
-                                className="text-uppercase"
-                                tag={NavLink}
-                                to={'/vendor/VendorEmployeeList/' + p.userid}
-                                activeClassName="active"
-                                exact="true">
-                                <i class="icon-eye icons font-1xl d-block mt-0"></i>
-                              </BSNavLink>
+                              
+                            <span id="view" style = {{'background-color': p.code, 'padding':'7px', 'border':'thin solid'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </td>
                             <td>
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/vendor/updatevendor/' + p.userid}
+                                to={'/theme/AddChatwalpaper/' + p.userid}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="cui-note icons font-1xl d-block mt-0"></i>
@@ -253,4 +257,4 @@ class VendorList extends Component {
   }
 }
 
-export default VendorList;
+export default CharWalper;

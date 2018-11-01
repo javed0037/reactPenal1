@@ -166,6 +166,10 @@ const Typography = Loadable({
   loader: () => import('./views/Theme/Typography'),
   loading: Loading,
 });
+// const Chatwalpaper = Loadable({
+//   loader: () => import('./views/Theme/Chatwalpaper'),
+//   loading: Loading,
+// });
 const Details = Loadable({
   loader: () => import('./views/Theme/Typography/Details'),
   loading: Loading,
@@ -197,7 +201,10 @@ const Chatwalpaper = Loadable({
   loader: () => import('./views/Theme/Chatwalpaper'),
   loading: Loading,
 });
-
+const AddChatwalpaper = Loadable({
+  loader: () => import('./views/Theme/AddChatwalpaper'),
+  loading: Loading,
+});
 const Widgets = Loadable({
   loader: () => import('./views/Widgets/Widgets'),
   loading: Loading,
@@ -229,6 +236,7 @@ const routes = [
   { path: '/theme/Support', name: 'Support', component: Support },
   { path: '/theme/TermAndConditions', name: 'TermAndConditions', component: TermAndConditions },
   { path: '/theme/Chatwalpaper', name: 'Chatwalpaper', component: Chatwalpaper },
+  { path: '/theme/AddChatwalpaper', name: 'AddChatwalpaper', component: AddChatwalpaper },
   { path: '/base', exact: true, name: 'Base', component: Cards },
   { path: '/base/cards', name: 'Cards', component: Cards },
   { path: '/base/forms', name: 'Forms', component: Forms },
