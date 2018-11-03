@@ -20,10 +20,10 @@ class Login extends Component {
   onSubmit = (e) =>{    
     e.preventDefault();
  
-    var txtusername=this.state.usernameOrEmail;
-    var txtpassword=this.state.password;
+    var username=this.state.usernameOrEmail;
+    var password=this.state.password;
 
-    if(txtusername!="" && txtpassword!="")
+    if(username!="" && password!="")
     {
       var getusersobj={ 
         method: 'POST',
@@ -31,18 +31,18 @@ class Login extends Component {
           'Content-Type': 'application/json'                 
         }),
         body: JSON.stringify({
-          "username" :txtusername,
-          "password" :txtpassword
+          "username" :username,
+          "password" :password
         })
       }    
 
-      var api_url=`${config.API_URL}`;
-         console.log(api_url,"api url",getusersobj,'threr arew getuser')
-      fetch(api_url+'/auth/signin', getusersobj)
+      var apiUrl = 'http://localhost:5000/admin/login';
+      fetch(apiUrl, getusersobj)
+      
         .then(function(response){
           if(response.status!=200)
           {
-          console.log("three are rewq param",getusersobj.body)
+          console.log("three are req param",getusersobj.body)
             swal({
               title: "Wrong!",
               text: "Somthing went wrong.",
@@ -51,10 +51,10 @@ class Login extends Component {
           }
           
           response.json().then(json=>{
-              if(json.status==true)
+              if(json.status==200)
               {
                 sessionStorage.clear(); 
-                sessionStorage.setItem("username",txtusername);
+                sessionStorage.setItem("username",username);
                 sessionStorage.setItem("jwt",json.accessToken);
                 sessionStorage.setItem("user_id",json.id);
                 sessionStorage.setItem("typeid",json.typeid);

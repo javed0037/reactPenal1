@@ -14,10 +14,8 @@ class EditProfile extends Component {
       email : '',
       phone : '',
       visible: true,
-     // EmployeeList : [{label  : '3 Month',value : 3},{label  : '6 Month',value : 6},{label  : '12 Month',value : 12}],
-      Status1  : [{label : 'Select Status' , value : 'Select Statu'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
-      // Wipe  : [{label : 'Select Status1' , value : 3},{label : 'Yes',value : 1},{label : 'No', value  :2}]
-    };
+       Status1  : [{label : 'Select Status' , value : 'Select Statu'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
+       };
 
     this.onDismiss = this.onDismiss.bind(this);
   }
@@ -57,9 +55,6 @@ class EditProfile extends Component {
             email : json.results[0].name,
             phone : json.results[0].phone,
             Status2 : json.results[0].status
-
-          //  Status1 : {label : 'Active',value : json.results[0].status} //json.results[0].Status1,
-            
           });
         }
         else {

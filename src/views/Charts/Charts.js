@@ -161,7 +161,6 @@ class Charts extends Component {
         console.log("there are the json ",json)
         if (json.data.length > 0) {
           var total_count = json.data.length;
-            console.log("total_count---------------",total_count);
             var result = json.data.filter(obj => {
               return obj.status === 1
             })
@@ -181,7 +180,7 @@ class Charts extends Component {
             });
 
             formthis.setState({ pieInAct : {
-              label : [
+              labels : [
                 'active','inactive'
 
               ],

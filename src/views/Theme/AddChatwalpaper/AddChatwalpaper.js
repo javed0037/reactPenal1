@@ -5,6 +5,7 @@ import { Alert, Form,CardFooter,Card, CardBody, CardHeader, Col, Row,FormGroup,B
   import ColorPicker from 'react-color-picker'
   import { ChromePicker } from 'react-color'
   import { SketchPicker } from 'react-color';
+  import JsColor from './jscolor'
  
 import 'react-color-picker/index.css'
 
@@ -16,6 +17,9 @@ class AddChartWalpaper extends Component {
       visible: true,
       displayColorPicker: false,
       background: '#fff',
+      settings: {
+        background_color: '#000000'
+      }
     };
 
     this.onDismiss = this.onDismiss.bind(this);
@@ -44,13 +48,19 @@ class AddChartWalpaper extends Component {
                    {/* <input type="text" placeholder="Select Color" id="colorcode" name="code"> */}
                      <Row>
                      <Col xs="3" md="3  "> 
-                     {/* <SketchPicker
+                     <SketchPicker
                           color={ this.state.background }
                           onChangeComplete={ this.handleChangeComplete }
-                        /> */}
-                     <Input type="color" color={ this.state.background }  id="colorcode" value={this.state.value} onChangeComplete={ this.handleChangeComplete } name="code" placeholder="Select Color" />
+                        />
+
                      </Col>
-                    <Col xs="2" md="2"><Input type="text"  id="colorcode" value={this.state.value} onChange={this.handleChange} name="code" /></Col></Row>
+                    <Col xs="2" md="2">
+                   
+                    <span id="view" style = {{'background-color': this.state.background, 'padding':'7px', 'border':'thin solid'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    {/* <JsColor id="visitorsWidgetBackgroundColor" label="Message background color" value={this.state.settings.background_color} onChange={(selected) => { this.setState({ settings: { ...this.state.settings, background_color: selected } }) }} />
+      */}
+                   </Col>
+                   </Row>
                     </FormGroup>                
               </CardBody>
             </Card>
@@ -68,3 +78,4 @@ class AddChartWalpaper extends Component {
 }
 
 export default AddChartWalpaper;
+
