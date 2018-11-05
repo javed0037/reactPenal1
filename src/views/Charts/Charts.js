@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Bar, Doughnut, Line, Pie, Polar, Radar } from 'react-chartjs-2';
 import { Card, CardBody, CardColumns, CardHeader } from 'reactstrap';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import config from '../.././config';
 
 
 var  pie = {};
@@ -149,13 +150,13 @@ class Charts extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-       // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
 
-    var apiUrl = "";
-    apiUrl   =  'http://localhost:5000/user/getallUser'
-    fetch(apiUrl, object)
+    var api_url=`${config.API_URL}`;
+    fetch(api_url+'/getallUser', object)
+
       .then(res => res.json())
       .then(json => {
         console.log("there are the json ",json)

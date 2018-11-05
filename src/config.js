@@ -1,5 +1,5 @@
 var config= {
-    API_URL:"http://172.104.163.157:5001/api",//"http://192.168.1.73:5002/api",//
+    API_URL:"http://localhost:5000/admin",
     HOST_URL:"http://localhost:3000"
   
   }

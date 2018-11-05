@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { Alert, Form,CardFooter,Card, CardBody, CardHeader, Col, Row,FormGroup,Button,
   Input,Label } from 'reactstrap';
-  import Select from 'react-select';
-  import ColorPicker from 'react-color-picker'
-  import { ChromePicker } from 'react-color'
-  import { SketchPicker } from 'react-color';
-  import JsColor from './jscolor'
+   import Select from 'react-select';
+  // import ColorPicker from 'react-color-picker'
+  // import { ChromePicker } from 'react-color'
+  // import { SketchPicker } from 'react-color';
+  // import JsColor from './jscolor'
+  // import ReactContainer from 'react.container';
+  // import { ColorPickerComponent } from '@syncfusion/ej2-react-inputs';
+  //import ColorPicker from 'react-input-colorpicker';
  
-import 'react-color-picker/index.css'
+//import 'react-color-picker/index.css'
+const config1 = {
+  backgroundColor: 'blue',
+  height: 300
+};
 
 class AddChartWalpaper extends Component {
   constructor(props) {
@@ -48,17 +55,17 @@ class AddChartWalpaper extends Component {
                    {/* <input type="text" placeholder="Select Color" id="colorcode" name="code"> */}
                      <Row>
                      <Col xs="3" md="3  "> 
-                     <SketchPicker
+
+                     
+                     {/* <SketchPicker
                           color={ this.state.background }
                           onChangeComplete={ this.handleChangeComplete }
-                        />
+                        /> */}
 
                      </Col>
                     <Col xs="2" md="2">
                    
                     <span id="view" style = {{'background-color': this.state.background, 'padding':'7px', 'border':'thin solid'}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    {/* <JsColor id="visitorsWidgetBackgroundColor" label="Message background color" value={this.state.settings.background_color} onChange={(selected) => { this.setState({ settings: { ...this.state.settings, background_color: selected } }) }} />
-      */}
                    </Col>
                    </Row>
                     </FormGroup>                

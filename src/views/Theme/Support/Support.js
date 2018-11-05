@@ -3,6 +3,7 @@ import { Alert, Card, CardBody, CardFooter,CardHeader, Col,Form, Row,FormGroup,B
   Input,Label } from 'reactstrap';
   import Select from 'react-select';
   import swal from 'sweetalert';
+  import config from '../../../config';
 
 class Alerts extends Component {
   constructor(props) {
@@ -33,8 +34,8 @@ class Alerts extends Component {
         'Content-Type': 'application/json',
       }
     }
-    var apiUrl = 'http://localhost:5000/admin/getAboutUs?id=4';
-    fetch(apiUrl, object)
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/getAboutUs?id=4', object)
       .then(res => res.json())
       .then(json => {
         console.log("this is json ------------",json.results.length)
@@ -87,9 +88,8 @@ class Alerts extends Component {
       body: JSON.stringify(args1)
     }
     var api_url = '';
-    api_url = 'http://localhost:5000/admin/updateaboutUs';
-   
-    fetch(api_url, object1)
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/updateaboutUs', object1)
       .then(function (response) {
         console.log('there are the response',response);
         

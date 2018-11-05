@@ -3,6 +3,7 @@ import { Alert, Card, CardBody, CardHeader, Col,Form, Row,CardFooter,FormGroup,B
   Input,Label } from 'reactstrap';
   import Select from 'react-select';
   import swal from 'sweetalert';
+  import config from '../../../../config';
 
 class EditProfile extends Component {
   constructor(props) {
@@ -33,16 +34,15 @@ class EditProfile extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-       // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
     var parameter = this.props.match.params.ids;
     var user_ids = (parameter) ? parameter : 0;
 
-    var apiUrl = "";
-    apiUrl   =  'http://localhost:5000/getUserDetails?userid='+user_ids
        
-    fetch(apiUrl, object)
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/getUserDetails?userid='+user_ids, object)
       .then(res => res.json())
       .then(json => {
 
@@ -103,19 +103,17 @@ class EditProfile extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       },
       body: JSON.stringify(args1)
     }
-    var api_url = '';
-    api_url = 'http://localhost:5000/admin/updateprofile?userid='+user_ids;
    
-    fetch(api_url, object1)
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/updateprofile?userid='+user_ids, object1)
       .then(function (response) {
         console.log('there are the response',response);
         
         response.json().then(json => {
-          console.log('there are the json---------', json.status,"jsonnnnn",json)
           if (json.status){
             swal({
               title: swaltitle,

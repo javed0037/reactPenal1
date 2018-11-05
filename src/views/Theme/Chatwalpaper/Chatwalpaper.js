@@ -5,6 +5,7 @@ import config from '../../../config';
 import dateFormat from 'dateformat';
 import { NavLink } from 'react-router-dom';
 import Select from 'react-select';
+
 import {
   NavLink as BSNavLink,
   Button
@@ -15,6 +16,7 @@ import swal from 'sweetalert';
 
 import ReactPaginate from 'react-paginate';
 import { PAGELIMIT } from '../../../Controllers/Comman';
+
  
 const divStyle = {
   margin: '40px',
@@ -63,7 +65,7 @@ class CharWalper extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+         'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
     var parameter = this.props.match.params.ids;
@@ -72,8 +74,8 @@ class CharWalper extends Component {
     var pageno = this.state.pageno;
    // var api_url = `${config.API_URL}`;
 
-    var apiUrl = 'http://localhost:5000/admin/colorCode';
-    fetch(apiUrl, object)
+   var api_url=`${config.API_URL}`;
+   fetch(api_url+'/colorCode', object)
       .then(res => res.json())
       .then(json => {
 
@@ -99,7 +101,7 @@ class CharWalper extends Component {
 
   statusupdate = (p, dt) => {
     //e.preventDefault(); // <--- prevent form from submitting
-    console.log(p.status, "this is status@@@@@@@")
+    console.log("there are the pppppppppppppp,,,,,,,,,,,,,,",p.id)
     var currentform = this;
     var currentstatus = (dt) ? dt : ((p.status === 1) ? 2 : 1);
     var currentstatusname = (dt) ? "delete" : ((p.status === 1) ? "inactive" : "active");
@@ -143,7 +145,7 @@ class CharWalper extends Component {
             body: JSON.stringify(p)
           }
           var api_url = `${config.API_URL}`;
-          fetch(api_url + '/superadmin/updateVendor', object)
+          fetch(api_url + '/deleteColor?id='+p.id, object)
             .then(res => res.json())
             .then(json => {
               currentform.listVendor();
@@ -193,9 +195,7 @@ class CharWalper extends Component {
                       this.state.products.map(function (p, index, ) {
                         return (
                           <tr>
-                            <td>{p.id}</td>
-                            
-                          
+                            <td>{p.id}</td>       
                             <td>
                              
                             {p.code}
@@ -209,14 +209,12 @@ class CharWalper extends Component {
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/theme/AddChatwalpaper/' + p.userid}
+                                to={'/theme/AddChatwalpaper/' + p.id}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="cui-note icons font-1xl d-block mt-0"></i>
                               </BSNavLink>
                             </td>
-
-
                             <td>
                               <Badge className="pointer1" onClick={() => formthis.statusupdate(p, 3)}><i class="fa fa-trash" aria-hidden="true"></i></Badge>
 

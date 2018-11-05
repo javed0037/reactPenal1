@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Alert, Card, CardBody, CardHeader,Table, Col, Row,FormGroup,Button,
   Input,Label } from 'reactstrap';
   import Select from 'react-select';
+  import config from '../../../../config';
 
 class Details extends Component {
   constructor(props) {
@@ -26,16 +27,14 @@ class Details extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-       // 'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
     var parameter = this.props.match.params.ids;
     var user_ids = (parameter) ? parameter : 0;
-
-    var apiUrl = "";
-    apiUrl   =  'http://localhost:5000/getUserDetails?userid='+user_ids
-       
-    fetch(apiUrl, object)
+  
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/getUserDetails?userid='+user_ids, object)
       .then(res => res.json())
       .then(json => {
 

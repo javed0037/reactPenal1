@@ -39,8 +39,9 @@ export const onSubmit = (e) =>{
       }    
       var api_url=`${config.API_URL}`;
          
-      fetch(api_url+'/auth/signin', getusersobj)
+      fetch(api_url+'/admin/login', getusersobj)
         .then(function(response){
+          console.log("there are the response",response)
           if(response.status!=200)
           {
             swal({
@@ -51,7 +52,7 @@ export const onSubmit = (e) =>{
           }
           
           response.json().then(json=>{
-              if(json.status==true)
+              if(json.status==200)
               {
                 sessionStorage.clear(); 
                 sessionStorage.setItem("username",txtusername);

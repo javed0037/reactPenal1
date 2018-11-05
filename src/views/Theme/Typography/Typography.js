@@ -72,21 +72,17 @@ class VendorList extends Component {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       },
       body: JSON.stringify(args1)
     }
     
-    var pageno = this.state.pageno;
-    var apiUrl = "";
-    apiUrl   =  'http://localhost:5000/getUserDetails1?npp='+PAGELIMIT+'&page='+pageno;
-    console.log(PAGELIMIT,'PAGELIMIT');   
-    fetch(apiUrl, object)
+    var pageno = this.state.pageno;   
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/getUserDetails1?npp='+PAGELIMIT+'&page='+pageno, object)
       .then(res => res.json())
       .then(json => {
-
-   //console.log("there are the result++++++++++++++++",json.responsePayload.totalpages);
    
-
         if (json.responsePayload.results.length > 0) {
           var total_count = json.responsePayload.totalpages;
 
@@ -132,18 +128,19 @@ class VendorList extends Component {
         }).then(function () {
           console.log(p, "there are the req param")
 
-          ///////////////////////////
           var object = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+              'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
             },
           }
 
-          var api_url = 'http://localhost:5000/user/deleteUser?userid='+p.userid;
 
-          fetch(api_url, object)
+
+          var api_url = `${config.API_URL}`;
+          fetch(api_url + '/deleteUser?userid='+p.userid, object)
+           
             .then(res => res.json())
 
             .then(json => {

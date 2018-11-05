@@ -3,6 +3,7 @@ import { Alert, Card, CardBody, CardHeader,Form,CardFooter, Col, Row,FormGroup,B
   Input,Label } from 'reactstrap';
   import Select from 'react-select';
   import swal from 'sweetalert';
+  import config from '../../../../config';
   var r = '';
 class AddUser extends Component {
   constructor(props) {
@@ -77,13 +78,13 @@ class AddUser extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       },
       body: JSON.stringify(args1)
     }
-    var api_url = '';
-    api_url = 'http://localhost:5000/addNewuser';
    
-    fetch(api_url, object1)
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/addNewuser', object1)
       .then(function (response) {
         console.log('there are the response',response);
         

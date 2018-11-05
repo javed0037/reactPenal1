@@ -5,7 +5,6 @@ import swal from 'sweetalert';
 
 
 class Login extends Component {
-
   constructor(props) {
     super(props);
     sessionStorage.clear(); 
@@ -36,10 +35,13 @@ class Login extends Component {
         })
       }    
 
-      var apiUrl = 'http://localhost:5000/admin/login';
-      fetch(apiUrl, getusersobj)
+      var api_url=`${config.API_URL}`;  
+      fetch(api_url+'/login', getusersobj)
       
         .then(function(response){
+
+     console.log("there are the response token---------------",response)
+
           if(response.status!=200)
           {
           console.log("three are req param",getusersobj.body)
