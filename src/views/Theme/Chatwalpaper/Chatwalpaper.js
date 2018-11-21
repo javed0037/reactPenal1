@@ -173,6 +173,13 @@ class CharWalper extends Component {
     return (
       <div className="animated fadeIn">
       <h4>CHAT WALLPAPER LIST</h4>
+      <Row>
+                  <Col xs="10" lg="10">
+                </Col>
+                <Col xs="2" lg="2">
+                <h4><a href= "/#/theme/AddChatwalpaper"> <Button type="submit" size="sm" color="primary"><i className="fa fa-plus"></i><strong> Add Color</strong></Button></a></h4>
+                </Col>
+                </Row>
         <Row>
           <Col xs="12" lg="12">
             <Card>

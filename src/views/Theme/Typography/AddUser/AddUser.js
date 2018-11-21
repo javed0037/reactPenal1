@@ -68,7 +68,7 @@ class AddUser extends Component {
       "phone" : phone,
       "password" : password,
       "status" : Status1,
-      "unique_key" :  unique_key
+      "pin_id" :  unique_key
     };
 
     var swaltitle = (user_ids == 0) ? "SAVE" : "UPDATE";

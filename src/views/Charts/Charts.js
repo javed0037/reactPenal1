@@ -16,7 +16,7 @@ const bar = {
       borderWidth: 2,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40],
+      data: [99, 59, 80, 81, 56, 55, 40],
     },
   ],
 };
@@ -76,7 +76,7 @@ const polar = {
   datasets: [
     {
       data: [
-        11,
+        91,
         16,
         7,
         3,
@@ -119,6 +119,8 @@ class Charts extends Component {
     };
   }
   componentDidMount() {
+    console.log("Charts ======sessionStorage.getItem('username')--",sessionStorage.getItem('username'))
+
     this.userlist();
   }
   getpai = ()=>{

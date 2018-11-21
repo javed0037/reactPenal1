@@ -20,6 +20,7 @@ class EditProfile extends Component {
 
     this.onDismiss = this.onDismiss.bind(this);
   }
+
   componentDidMount() {
     this.getUserDetails();
     
@@ -28,7 +29,7 @@ class EditProfile extends Component {
   onDismiss() {
     this.setState({ visible: false });
   }
-
+  
   getUserDetails = () => {
     var object = {
       method: 'GET',
@@ -38,11 +39,11 @@ class EditProfile extends Component {
       }
     }
     var parameter = this.props.match.params.ids;
-    var user_ids = (parameter) ? parameter : 0;
+    var id = (parameter) ? parameter : 0;
 
        
     var api_url = `${config.API_URL}`;
-    fetch(api_url + '/getUserDetails?userid='+user_ids, object)
+    fetch(api_url + '/getUserDetails?id='+id, object)
       .then(res => res.json())
       .then(json => {
 
@@ -52,7 +53,7 @@ class EditProfile extends Component {
           this.setState({
            
             name : json.results[0].name,
-            email : json.results[0].name,
+            email : json.results[0].email,
             phone : json.results[0].phone,
             Status2 : json.results[0].status
           });
@@ -82,7 +83,7 @@ class EditProfile extends Component {
     // get our form data out of state
     console.log('there are the state 444444444=>', this.state)
     var parameter = this.props.match.params.ids;
-    var user_ids = (parameter) ? parameter : 0;
+    var id = (parameter) ? parameter : 0;
     
     var email = (this.state.email) ? this.state.email.toString() : "";
     var name = (this.state.name) ? this.state.name.toString() :    "";
@@ -96,8 +97,8 @@ class EditProfile extends Component {
       "Status" : Status1
     };
 
-    var swaltitle = (user_ids == 0) ? "SAVE" : "UPDATE";
-    var swaltext = (user_ids == 0) ? "Successfully save" : "Successfully update";
+    var swaltitle = (id == 0) ? "SAVE" : "UPDATE";
+    var swaltext = (id == 0) ? "Successfully save" : "Successfully update";
 
     var object1 = {
       method: 'POST',
@@ -109,12 +110,12 @@ class EditProfile extends Component {
     }
    
     var api_url = `${config.API_URL}`;
-    fetch(api_url + '/updateprofile?userid='+user_ids, object1)
+    fetch(api_url + '/updateprofile?id='+id, object1)
       .then(function (response) {
         console.log('there are the response',response);
         
         response.json().then(json => {
-          if (json.status){
+          if (json.status == 200){
             swal({
               title: swaltitle,
               text:  swaltext,
@@ -122,13 +123,14 @@ class EditProfile extends Component {
             });
             //console.log("there are the typography",window.location.href)
             window.location.href = '/#/theme/typography';
-            console.log("there are the typography88888888888888888888",window.location.href)
+            
+            console.log("there are the typography",window.location.href)
           }
           else {
             console.log("this is going on the way")
             swal({
               title: "Warning",
-              text: json.message,
+              text: json.error.code,
               icon: "warning",
             });
              window.location.href = '/#/theme/typography';
@@ -146,6 +148,7 @@ class EditProfile extends Component {
       });
   }
   render() {
+    console.log("there are the props-----------",this.props);
     const { selectedOption1 } = this.state;
    // var test = { "label": this.state.Status1 };
     var test1 = (this.state.Status2 === 1)?'Active' :'Inactive';

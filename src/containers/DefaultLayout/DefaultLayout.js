@@ -27,10 +27,12 @@ class DefaultLayout extends Component {
   constructor(props) {
     super(props);
     var host_url=`${config.HOST_URL}`;
+    console.log("sessionStorage.getItem('username')--",sessionStorage.getItem('username'))
 
     if(sessionStorage.getItem('username')==null)
     {
-      console.log("there are going to first",host_url)
+     
+      console.log('path-->',host_url+'/#/login')
 
       window.location.href = host_url+'/#/login';
     }
@@ -60,7 +62,7 @@ class DefaultLayout extends Component {
                       : (null);
                   },
                 )}
-                <Redirect from="/" to="/charts" />
+                <Redirect from="/" to={((sessionStorage.getItem('username'))?"/charts":"/login")} />
               </Switch>
             </Container>
           </main>

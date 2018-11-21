@@ -31,10 +31,10 @@ class Details extends Component {
       }
     }
     var parameter = this.props.match.params.ids;
-    var user_ids = (parameter) ? parameter : 0;
-  
+    var id = (parameter) ? parameter : 0;
+  console.log("parameter,parameter*****",parameter)
     var api_url = `${config.API_URL}`;
-    fetch(api_url + '/getUserDetails?userid='+user_ids, object)
+    fetch(api_url + '/getUserDetails?id='+id, object)
       .then(res => res.json())
       .then(json => {
 

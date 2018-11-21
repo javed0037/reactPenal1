@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Alert, Form,CardFooter,Card, CardBody, CardHeader, Col, Row,FormGroup,Button,
   Input,Label } from 'reactstrap';
    import Select from 'react-select';
-  // import ColorPicker from 'react-color-picker'
+   import ColorPicker from 'react-color-picker'
   // import { ChromePicker } from 'react-color'
-  // import { SketchPicker } from 'react-color';
+   import { SketchPicker } from 'react-color';
   // import JsColor from './jscolor'
   // import ReactContainer from 'react.container';
-  // import { ColorPickerComponent } from '@syncfusion/ej2-react-inputs';
+   import { ColorPickerComponent } from '@syncfusion/ej2-react-inputs';
   //import ColorPicker from 'react-input-colorpicker';
  
 //import 'react-color-picker/index.css'
@@ -19,8 +19,10 @@ const config1 = {
 class AddChartWalpaper extends Component {
   constructor(props) {
     super(props);
+    this.palette = props.palette;
 
     this.state = {
+      
       visible: true,
       displayColorPicker: false,
       background: '#fff',
@@ -57,10 +59,7 @@ class AddChartWalpaper extends Component {
                      <Col xs="3" md="3  "> 
 
                      
-                     {/* <SketchPicker
-                          color={ this.state.background }
-                          onChangeComplete={ this.handleChangeComplete }
-                        /> */}
+                     <ColorPicker palette={this.palette} />
 
                      </Col>
                     <Col xs="2" md="2">

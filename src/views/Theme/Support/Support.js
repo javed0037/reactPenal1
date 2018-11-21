@@ -32,6 +32,7 @@ class Alerts extends Component {
        method: 'GET',
        headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       }
     }
     var api_url = `${config.API_URL}`;
@@ -83,7 +84,7 @@ class Alerts extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        //'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+        'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       },
       body: JSON.stringify(args1)
     }

@@ -25,8 +25,11 @@ class VendorList extends Component {
       offset: 0,
       pageno: 1,
       pageCount: 0,
-      status :  0,
-      Status1  : [{label : 'Select Status' , value : 'select status'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
+      status :  3,
+      username :'',
+      phoneno : '',
+      email : '',
+      Status1  : [{label : 'SelectStatus' , value : 'selectStatus'},{label : 'Active',value : 'Active'},{label : 'Inactive', value  :'Inactive'}],
     };
   }
   componentDidMount() {
@@ -45,13 +48,63 @@ class VendorList extends Component {
     );
   };
   handleChange = (e) => {
-    console.log("e valueeee=",e.value)
-    var val1=(e.value == "Active")?1:0;
+    console.log("e value=",e.value)
+    var val1=(e.value == "selectStatus")?3:(e.value == "Active")?1:0;
     this.setState({ status: val1 },()=>{
-      this.userlist();
+      this.getData();
     });
     
   }
+  
+
+  getData = () => {
+    console.log("state====",this.state.status)
+    var name = (this.state.name) ? this.state.name : "";
+    var phone = (this.state.phone) ? this.state.phone : "";
+    var email = (this.state.email) ? this.state.email : "";
+    var Status1 = (this.state.status == 3)? "":(this.state.status===0)?0:1;
+    var args1 = {
+      "email": email,
+      "name": name,
+      "phone" : phone,
+      "status" : Status1
+    };
+    console.log("args1====",args1)
+    var object = {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
+      },
+      body: JSON.stringify(args1)
+    }
+    
+    var pageno = this.state.pageno;   
+    var api_url = `${config.API_URL}`;
+    fetch(api_url + '/getUserDetails1?npp='+PAGELIMIT+'&page='+pageno, object)
+      .then(res => res.json())
+      .then(json => {
+   
+        if (json.responsePayload.results.length > 0) {
+          var total_count = json.responsePayload.totalpages;
+
+          this.setState({
+            products: json.responsePayload.results,
+            pageCount: Math.ceil(total_count / PAGELIMIT)
+          });
+
+        }
+        else {
+          this.setState({
+            products: [],
+            pageCount: 0
+          })
+        }
+      }).catch(error => {
+        console.log("error-->>", error)
+      });
+  }
+
 
   userlist = () => {
     console.log("state====",this.state.status)
@@ -67,21 +120,21 @@ class VendorList extends Component {
     };
 
     console.log("args1====",args1)
-
     var object = {
-      method: 'POST',
+      method: 'GET',
       headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
       },
-      body: JSON.stringify(args1)
+     // body: JSON.stringify(args1)
     }
     
     var pageno = this.state.pageno;   
     var api_url = `${config.API_URL}`;
-    fetch(api_url + '/getUserDetails1?npp='+PAGELIMIT+'&page='+pageno, object)
+    fetch(api_url + '/getUserWithPagination?npp='+PAGELIMIT+'&page='+pageno, object)
       .then(res => res.json())
       .then(json => {
+        console.log("there are all result get====",json)
    
         if (json.responsePayload.results.length > 0) {
           var total_count = json.responsePayload.totalpages;
@@ -135,9 +188,6 @@ class VendorList extends Component {
               'Authorization': 'Bearer ' + sessionStorage.getItem('jwt') + ''
             },
           }
-
-
-
           var api_url = `${config.API_URL}`;
           fetch(api_url + '/deleteUser?userid='+p.userid, object)
            
@@ -159,7 +209,8 @@ class VendorList extends Component {
     this.setState(
       { [e.target.name]: e.target.value },
       () => {
-        this.userlist();
+        console.log("there are the goinf on")
+        this.getData();
       }
     );
   }
@@ -167,7 +218,7 @@ class VendorList extends Component {
   render() {
     const formthis = this;
     const { selectedOption1 } = this.state;
-    var test1 = (this.state.status === 1)?'Active' :'Inactive';
+    var test1 = (this.state.status === 3)?'SelectStatus':(this.state.status === 1)?'Active' :'Inactive';
     return (
       <div className="animated fadeIn">
      
@@ -249,7 +300,7 @@ class VendorList extends Component {
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/Details/' +p.userid}
+                                to={'/Details/' +p.id}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="icon-eye icons font-1xl d-block mt-0"></i>
@@ -259,7 +310,7 @@ class VendorList extends Component {
                               <BSNavLink
                                 className="text-uppercase"
                                 tag={NavLink}
-                                to={'/EditProfile/' + p.userid}
+                                to={'/EditProfile/' + p.id}
                                 activeClassName="active"
                                 exact="true">
                                 <i class="cui-note icons font-1xl d-block mt-0"></i>
