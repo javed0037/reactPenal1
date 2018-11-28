@@ -203,6 +203,10 @@ const AddChatwalpaper = Loadable({
   loader: () => import('./views/Theme/AddChatwalpaper'),
   loading: Loading,
 });
+const AddImage = Loadable({
+  loader: () => import('./views/Theme/AddImage'),
+  loading: Loading,
+});
 const Widgets = Loadable({
   loader: () => import('./views/Widgets/Widgets'),
   loading: Loading,
@@ -235,6 +239,7 @@ const routes = [
   { path: '/theme/TermAndConditions', name: 'TermAndConditions', component: TermAndConditions },
   { path: '/theme/Chatwalpaper', name: 'Chatwalpaper', component: Chatwalpaper },
   { path: '/theme/AddChatwalpaper', name: 'AddChatwalpaper', component: AddChatwalpaper },
+  { path: '/theme/AddImage', name: 'AddImage', component: AddImage },
   { path: '/base', exact: true, name: 'Base', component: Cards },
   { path: '/base/cards', name: 'Cards', component: Cards },
   { path: '/base/forms', name: 'Forms', component: Forms },

@@ -50,6 +50,11 @@ export default {
         url: '/theme/Chatwalpaper',
         icon: 'icon-star',
       },
+      {
+        name: 'UPLOAD IMAGE',
+        url: '/theme/AddImage',
+        icon: 'icon-star',
+      },
    
     
     // {
